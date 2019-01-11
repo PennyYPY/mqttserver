@@ -1,8 +1,15 @@
-package com.penny.mqttserver.mqttconfig;
+package com.penny.mqttserver.core.config;
 
+import com.penny.mqttserver.core.config.MqttCallback;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
+import org.springframework.stereotype.Component;
 
+/**
+ * 通过paho mqtt client方式发布消息，后续可能使用mqttGateway的方式
+**/
+
+@Component
 public class MqttPub {
 
     private MqttClient client;
@@ -32,9 +39,11 @@ public class MqttPub {
     }
 
     /**publish():发布消息方法*/
-    public void publish(MqttMessage message, String secondTopic) throws MqttException{
+    public void publish(String data, String secondTopic) throws MqttException{
+        MqttMessage mqttMessage = new MqttMessage();
+        mqttMessage.setPayload(data.getBytes());
         topic = client.getTopic(secondTopic);
-        MqttDeliveryToken token = topic.publish(message);
+        MqttDeliveryToken token = topic.publish(mqttMessage);
         token.waitForCompletion();
         System.out.println("发布完成? "+token.isComplete());
     }

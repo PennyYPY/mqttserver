@@ -1,4 +1,4 @@
-package com.penny.mqttserver.mqttconfig;
+package com.penny.mqttserver.core.config;
 
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;

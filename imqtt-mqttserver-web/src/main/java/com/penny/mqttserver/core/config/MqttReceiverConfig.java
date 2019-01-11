@@ -1,6 +1,5 @@
-package com.penny.mqttserver.mqttconfig;
+package com.penny.mqttserver.core.config;
 
-import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,12 +15,15 @@ import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
 
 /**
- * mqtt消息订阅服务类
- * */
+ * @ClassName MqttReceiverConfig
+ * @Description mqtt消息订阅服务类
+ * @Date 2019/1/11 下午3:58
+ * @Created by yupeiying
+ */
 
 @Configuration
 @IntegrationComponentScan
-public class MqttReceiveConfig {
+public class MqttReceiverConfig {
 
     @Value("${spring.mqtt.username}")
     private String userName;
