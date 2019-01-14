@@ -19,13 +19,13 @@
         </javaTypeResolver>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.penny.mqttserver.domain" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.penny.mqttserver.po" targetProject="/Users/yupeiying/Desktop/mqttserver/imqtt-mqttserver-service/src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapping" targetProject="/Users/yupeiying/Desktop/mqttserver/imqtt-mqttserver-service/src/main/resources/">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--生成Dao类存放位置-->
@@ -34,13 +34,21 @@
                 type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.penny.mqttserver.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.penny.mqttserver.mapper" targetProject="/Users/yupeiying/Desktop/mqttserver/imqtt-mqttserver-service/src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="t_user" domainObjectName="User">
-        </table>
+        <table tableName="alarm_message" domainObjectName="AlarmMessage"/>
+        <table tableName="dev_alarm_data" domainObjectName="DevAlarmData"/>
+        <table tableName="dev_status" domainObjectName="DevStatus"/>
+        <table tableName="dev_verify_data" domainObjectName="DevVerifyData"/>
+        <table tableName="historical_data" domainObjectName="HistoricalData"/>
+        <table tableName="protocol_config_detail" domainObjectName="ProtocolConfigDetail"/>
+        <table tableName="protocol_config_master" domainObjectName="ProtocolConfigMaster"/>
+        <table tableName="user_info" domainObjectName="UserInfo"/>
+        <table tableName="user_ref_device" domainObjectName="UserRefDevice"/>
+
 
     </context>
 </generatorConfiguration>

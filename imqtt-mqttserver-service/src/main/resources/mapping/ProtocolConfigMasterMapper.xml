@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.penny.mqttserver.mapper.ProtocolConfigMasterMapper">
+  <resultMap id="BaseResultMap" type="com.penny.mqttserver.po.ProtocolConfigMaster">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sn_code" jdbcType="VARCHAR" property="snCode" />
+    <result column="protocol_version" jdbcType="INTEGER" property="protocolVersion" />
+    <result column="is_used" jdbcType="INTEGER" property="isUsed" />
+    <result column="used_time" jdbcType="DATE" property="usedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sn_code, protocol_version, is_used, used_time
+  </sql>
+  <select id="selectByExample" parameterType="com.penny.mqttserver.po.ProtocolConfigMasterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from protocol_config_master
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from protocol_config_master
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from protocol_config_master
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.penny.mqttserver.po.ProtocolConfigMasterExample">
+    delete from protocol_config_master
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    insert into protocol_config_master (id, sn_code, protocol_version, 
+      is_used, used_time)
+    values (#{id,jdbcType=VARCHAR}, #{snCode,jdbcType=VARCHAR}, #{protocolVersion,jdbcType=INTEGER}, 
+      #{isUsed,jdbcType=INTEGER}, #{usedTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    insert into protocol_config_master
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="snCode != null">
+        sn_code,
+      </if>
+      <if test="protocolVersion != null">
+        protocol_version,
+      </if>
+      <if test="isUsed != null">
+        is_used,
+      </if>
+      <if test="usedTime != null">
+        used_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="snCode != null">
+        #{snCode,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolVersion != null">
+        #{protocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="isUsed != null">
+        #{isUsed,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null">
+        #{usedTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.penny.mqttserver.po.ProtocolConfigMasterExample" resultType="java.lang.Long">
+    select count(*) from protocol_config_master
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update protocol_config_master
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snCode != null">
+        sn_code = #{record.snCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protocolVersion != null">
+        protocol_version = #{record.protocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUsed != null">
+        is_used = #{record.isUsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedTime != null">
+        used_time = #{record.usedTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update protocol_config_master
+    set id = #{record.id,jdbcType=VARCHAR},
+      sn_code = #{record.snCode,jdbcType=VARCHAR},
+      protocol_version = #{record.protocolVersion,jdbcType=INTEGER},
+      is_used = #{record.isUsed,jdbcType=INTEGER},
+      used_time = #{record.usedTime,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    update protocol_config_master
+    <set>
+      <if test="snCode != null">
+        sn_code = #{snCode,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolVersion != null">
+        protocol_version = #{protocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="isUsed != null">
+        is_used = #{isUsed,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null">
+        used_time = #{usedTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    update protocol_config_master
+    set sn_code = #{snCode,jdbcType=VARCHAR},
+      protocol_version = #{protocolVersion,jdbcType=INTEGER},
+      is_used = #{isUsed,jdbcType=INTEGER},
+      used_time = #{usedTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.penny.mqttserver.po.ProtocolConfigMaster">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sn_code" jdbcType="VARCHAR" property="snCode" />
+    <result column="protocol_version" jdbcType="INTEGER" property="protocolVersion" />
+    <result column="is_used" jdbcType="INTEGER" property="isUsed" />
+    <result column="used_time" jdbcType="DATE" property="usedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, sn_code, protocol_version, is_used, used_time
+  </sql>
+  <select id="selectByExample" parameterType="com.penny.mqttserver.po.ProtocolConfigMasterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from protocol_config_master
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from protocol_config_master
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from protocol_config_master
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.penny.mqttserver.po.ProtocolConfigMasterExample">
+    delete from protocol_config_master
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    insert into protocol_config_master (id, sn_code, protocol_version, 
+      is_used, used_time)
+    values (#{id,jdbcType=VARCHAR}, #{snCode,jdbcType=VARCHAR}, #{protocolVersion,jdbcType=INTEGER}, 
+      #{isUsed,jdbcType=INTEGER}, #{usedTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    insert into protocol_config_master
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="snCode != null">
+        sn_code,
+      </if>
+      <if test="protocolVersion != null">
+        protocol_version,
+      </if>
+      <if test="isUsed != null">
+        is_used,
+      </if>
+      <if test="usedTime != null">
+        used_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="snCode != null">
+        #{snCode,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolVersion != null">
+        #{protocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="isUsed != null">
+        #{isUsed,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null">
+        #{usedTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.penny.mqttserver.po.ProtocolConfigMasterExample" resultType="java.lang.Long">
+    select count(*) from protocol_config_master
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update protocol_config_master
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.snCode != null">
+        sn_code = #{record.snCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.protocolVersion != null">
+        protocol_version = #{record.protocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="record.isUsed != null">
+        is_used = #{record.isUsed,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedTime != null">
+        used_time = #{record.usedTime,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update protocol_config_master
+    set id = #{record.id,jdbcType=VARCHAR},
+      sn_code = #{record.snCode,jdbcType=VARCHAR},
+      protocol_version = #{record.protocolVersion,jdbcType=INTEGER},
+      is_used = #{record.isUsed,jdbcType=INTEGER},
+      used_time = #{record.usedTime,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    update protocol_config_master
+    <set>
+      <if test="snCode != null">
+        sn_code = #{snCode,jdbcType=VARCHAR},
+      </if>
+      <if test="protocolVersion != null">
+        protocol_version = #{protocolVersion,jdbcType=INTEGER},
+      </if>
+      <if test="isUsed != null">
+        is_used = #{isUsed,jdbcType=INTEGER},
+      </if>
+      <if test="usedTime != null">
+        used_time = #{usedTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.penny.mqttserver.po.ProtocolConfigMaster">
+    update protocol_config_master
+    set sn_code = #{snCode,jdbcType=VARCHAR},
+      protocol_version = #{protocolVersion,jdbcType=INTEGER},
+      is_used = #{isUsed,jdbcType=INTEGER},
+      used_time = #{usedTime,jdbcType=DATE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
